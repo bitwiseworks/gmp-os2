@@ -2177,7 +2177,14 @@ AC_CACHE_CHECK([for assembler COFF type directives],
 	.endef
 ${tmp_gsym_prefix}foo$gmp_cv_asm_label_suffix
 ],
-  [gmp_cv_asm_x86_coff_type=yes],
+  [case $host in
+   *-*-os2*)
+   gmp_cv_asm_x86_coff_type=no
+   ;;
+   *)
+   gmp_cv_asm_x86_coff_type=yes
+   ;;
+  esac],
   [gmp_cv_asm_x86_coff_type=no])
 ])
 echo ["define(<HAVE_COFF_TYPE>, <$gmp_cv_asm_x86_coff_type>)"] >> $gmp_tmpconfigm4
